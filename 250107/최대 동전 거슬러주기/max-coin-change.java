@@ -2,10 +2,13 @@ import java.util.*;
 
 public class Main {
 
+    static int MAX_N = 100;
+    static int MAX_M = 10000;
+
     static int n;
     static int m;
-    static int[] coins;
-    static int[] dp;
+    static int[] coins = new int[n];
+    static int[] dp = new int[MAX_M + 1];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
