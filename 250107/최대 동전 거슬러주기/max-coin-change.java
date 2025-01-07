@@ -7,16 +7,13 @@ public class Main {
 
     static int n;
     static int m;
-    static int[] coins = new int[n];
+    static int[] coins = new int[MAX_N + 1];
     static int[] dp = new int[MAX_M + 1];
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         n = sc.nextInt();
         m = sc.nextInt();
-        coins = new int[n];
-        dp = new int[m + 1];
-        // init
 
         for (int i = 0; i <= m; i++) {
             dp[i] = Integer.MIN_VALUE;
@@ -37,7 +34,7 @@ public class Main {
                 }
             }
         }
-        
+
         System.out.println(dp[m] < 0 ? -1 : dp[m]);
 
     }
