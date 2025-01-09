@@ -33,8 +33,11 @@ public class Main {
                 // w[i] 보다 현재 무게가 클 경우, 아이템 i를 포함시킬 수 있다.
                 // 아이템 i를 포함시킨 후와, 포함시키지 않은 값 중 큰 값을 선택하면 된다.
                 if (w[i] <= currentW) {
-                    dp[i][currentW] = Math.max(dp[i - 1][currentW], v[i] + dp[i - 1][currentW - w[i]]);
+                    dp[i][currentW] = Math.max(dp[i][currentW], v[i] + dp[i - 1][currentW - w[i]]);
                 }
+                // 보석의 무게가 전체 가방 무게보다 클 경우, 
+                // 해당 보석을 선택하지 못하므로, 선택하지 않을 경우의 가치로 계산한다.
+                dp[i][currentW] = Math.max(dp[i][currentW], dp[i - 1][currentW]);
             }
         }
 
@@ -45,7 +48,7 @@ public class Main {
 
     private static int getMax() {
         int max = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= m; j++) {
                 max = Math.max(max, dp[i][j]);
             }
