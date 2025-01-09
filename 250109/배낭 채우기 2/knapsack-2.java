@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * Knapsack: 중복된 보석을 선택할 수 있는 경우
+ */
 public class Main {
     static int n;
     static int m;
@@ -12,10 +15,10 @@ public class Main {
         initialize();
 
         // 보석 i를 선택한다.
-        for (int i = 1; i < m; i++) {
+        for (int i = 1; i <= n; i++) {
             for (int currentW = 0; currentW <= m; currentW++) {
                 // 보석 i를 선택할 수 있다면
-                if (currentW > w[i]) {
+                if (currentW >= w[i]) {
                     // 기존 값과 비교해서 큰 값을 채워놓는다.
                     // 단, 중복해서 선택이 가능하기 때문에
                     // dp[i][currentW - w[i]], dp[i - 1][currentW - w[i]] 두 경우 중 큰 값을 선택한다.
@@ -29,6 +32,7 @@ public class Main {
             }
         }
 
+        System.out.println(getMax());
     }
 
     private static void initialize() {
@@ -46,6 +50,16 @@ public class Main {
         }
 
         dp = new int[n + 1][m + 1];
+    }
+
+    static int getMax() {
+        int max = 0;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+        return max;
     }
 
 }
